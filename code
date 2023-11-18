@@ -1,0 +1,54 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int a, b, mini = 1000000000, maxi = -1, nrdiv = 0, nrdivmax = 0, d, i;
+    
+    cin >> a >> b;
+    
+    for(i = a; i <= b; i ++)
+    {
+        nrdiv = 0;
+        
+        if(i % 2 == 0)
+        {
+            nrdiv ++;
+        }
+        
+        for(d = 2; d * d < i; d ++)
+        {
+            if(i % d == 0 and d % 2 == 0)
+            {
+                nrdiv ++;
+            }
+            
+            if(i % d == 0 and (i / d) % 2 == 0)
+            {
+                nrdiv ++;
+            }
+        }
+        
+        if(d * d == i and d % 2 == 0)
+        {
+            nrdiv ++;
+        }
+        
+    
+        if(nrdiv > nrdivmax)
+        {
+            mini = i;
+            maxi = i;
+            nrdivmax = nrdiv;
+        }
+        else if(nrdiv == nrdivmax)
+        {
+            maxi = i;
+        }
+    }
+    
+    cout << nrdivmax << " " << mini << " " << maxi;
+
+    return 0;
+}
